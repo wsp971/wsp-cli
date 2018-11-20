@@ -36,7 +36,6 @@ program.command('word')
             }
             return;
         }
-
         if (word.change || (interpretation && interpretation.change) || (cmd && cmd.change)) {
             if (!word) {
                 log(chalk.red('Error: change a word like this:'));
@@ -78,7 +77,7 @@ program.command('word')
 
 
 
-
+/** todo list 管理*/
 program.command('todo')
     .description('待做事项列表')
     .alias('td')
@@ -112,6 +111,8 @@ program.command('upload')
         console.log('hello this is the upload subcommand');
     });
 
+
+/** 生成模板文件*/
 program.command('generate')
     .description('创建模板文件')
     .usage('template [option] <filename>')
@@ -153,10 +154,6 @@ if (!process.argv.slice(2).length) {
 function make_red(txt) {
     return chalk.red(txt)
 }
-
-
-
-
 
 
 
