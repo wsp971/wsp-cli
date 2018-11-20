@@ -1,0 +1,19 @@
+{
+  "name": "wsp-cli",
+  "version": "1.0.4",
+  "description": "cli test",
+  "main": "index.js",
+  "bin": {
+    "wsp": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wangshiping",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.19.0",
+    "table": "^5.1.0"
+  }
+}
