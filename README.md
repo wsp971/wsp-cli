@@ -1,6 +1,6 @@
 # wsp-cli 命令行工具
 
-一个辅助工作的cli命令行工具，已发布 wsp-cli  
+一个辅助工作的cli命令行工具，已发布npm包：wsp-cli 可 ```npm install wsp-cli -g``` 下载使用  
 
 ## 单词管理 （wsp word [option]）
 
