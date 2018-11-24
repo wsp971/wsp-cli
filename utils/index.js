@@ -1,5 +1,7 @@
-var file = require('./file');
+const file = require('./file');
+const baseClass = require('./baseClass');
 
 module.exports =  {
-    file
-}
+    file,
+    baseClass
+};

@@ -1,4 +1,4 @@
-const util = require('./utils');
+const util = require('../utils');
 const path = require('path');
 const log = console.log;
 const chalk = require('chalk');

@@ -1,6 +1,6 @@
 {
   "name": "wsp-cli",
-  "version": "1.0.4",
+  "version": "1.0.9",
   "description": "cli test",
   "main": "index.js",
   "bin": {
@@ -12,8 +12,12 @@
   "author": "wangshiping",
   "license": "ISC",
   "dependencies": {
+    "busboy": "^0.2.14",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
+    "inquirer": "^6.2.0",
+    "multiparty": "^4.2.1",
+    "opn": "^5.4.0",
     "table": "^5.1.0"
   }
 }

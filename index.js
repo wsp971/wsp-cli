@@ -2,10 +2,10 @@
 var program = require('commander');
 var package = require('./package.json');
 var chalk = require('chalk');
-var log = console.log
-var todoList = require('./todo').todoList;
-var wordManager = require('./word');
-var {generateFile} = require('./generateFile');
+var log = console.log;
+var todo = require('./functions/todo');
+var wordManager = require('./functions/word');
+var {generateFile} = require('./functions/generateFile');
 
 /**
  * 單詞管理命令
@@ -84,14 +84,17 @@ program.command('todo')
     .usage('todo [options] [arg]')
     .option('-l --list', 'show the list you should todo next time')
     .option('-a --add', 'add todo item of your todo list')
+    .option('-d --delete', 'delete the todo item')
     .action(function (cmd) {
         if (cmd.list) {
-            todoList.showNotFinishedList();
+            todo.todoList.showNotFinishedList();
         }
         if (cmd.add) {
-            var addTestItem = require('./todo').addTextAtem
-            addTestItem();
-            todoList.saveToStore();
+            todo.addTodoItem();
+        }
+        if(cmd.delete){
+            todo.todoList.deleteItem();
+            // todo.todoList.editItem();
         }
     })
     .on('--help', function () {
@@ -175,7 +178,7 @@ function make_red(txt) {
 //     console.log('  $ deploy exec async');
 // });
 
-program.parse(process.argv);
-program.version(package.version);
+// program.parse(process.argv);
+program.version(package.version).parse(process.argv);
 // program.outputHelp(make_red);
 
