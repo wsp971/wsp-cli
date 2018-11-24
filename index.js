@@ -13,6 +13,7 @@ var {generateFile} = require('./functions/generateFile');
 program.command('word')
     .description('单词复习计划')
     .usage('word [options]')
+    .alias('w')
     .option('-w --whole', 'show all word list of yours')
     .option('-l --list', 'show the word list which of you have not recited')
     .option('-a --add', 'add a word to you words list')
@@ -106,20 +107,20 @@ program.command('todo')
     });
 
 
-program.command('upload')
-    .description('上传文档到服务器')
-    .usage('upload <file> [option]')
-    .alias('u')
-    .action(function () {
-        console.log('hello this is the upload subcommand');
-    });
+// program.command('upload')
+//     .description('上传文档到服务器')
+//     .usage('upload <file> [option]')
+//     .alias('u')
+//     .action(function () {
+//         console.log('hello this is the upload subcommand');
+//     });
 
 
 /** 生成模板文件*/
 program.command('generate')
     .description('创建模板文件')
     .usage('template [option] <filename>')
-    .alias('t')
+    .alias('g')
     .option('-v --vue', 'generate a vue template file')
     .option('-s --store', 'generate a vuex store template file')
     .option('-e --eslint', 'generate a eslint template file')
