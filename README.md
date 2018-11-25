@@ -12,15 +12,17 @@ Options:
   -a --add     add a word to you words list
   -c --change  change the state of word which you should recite or not
   -d --delete  delete a word from your word list
+  -r --review  review your word list
   -h, --help   output usage information
 
 Examples:
+ wsp word --list
+ wsp word --review
+ wsp word --add test 测试
+ wsp word --whole
+ wsp word --delete
+ wsp word --change test
 
- $ word --list
- $ word --add test 测试
- $ word --whole
- $ word --delete
- $ word --change test
 
 ```
 ## 模板文件生成 （wsp generate [option]）
@@ -50,14 +52,26 @@ Examples:
 ```markdown
 
 Options:
-  -l --list   show the list you should todo next time
-  -a --add    add todo item of your todo list
-  -h, --help  output usage information
+  -l --list    show the list you should todo next time
+  -a --add     add todo item of your todo list
+  -d --delete  delete the todo item
+  -h, --help   output usage information
 
 Examples:
 
- $ todo --list
- $ todo --add
+ wsp todo --list
+ wsp todo --add
+ wsp todo --delete
 
+```
+
+## sftp 上传文件到服务器目录
+
+```markdown
+
+Options:
+  -h, --help  output usage information
+Examples:
+ wsp sftp
 
 ```

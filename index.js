@@ -65,21 +65,23 @@ program.command('word')
         log("");
         log(chalk.bgWhite.yellow("Examples:"));
         log("");
-        log(chalk.blue(' $ word --list'));
-        log(chalk.blue(' $ word --add test 测试'));
-        log(chalk.blue(' $ word --whole'));
-        log(chalk.blue(' $ word --delete'));
-        log(chalk.blue(' $ word --change test'));
+        log(chalk.blue(' wsp word --list'));
+        log(chalk.blue(' wsp word --review'));
+        log(chalk.blue(' wsp word --add test 测试'));
+        log(chalk.blue(' wsp word --whole'));
+        log(chalk.blue(' wsp word --delete'));
+        log(chalk.blue(' wsp word --change test'));
     })
     .on('--help', function () {
         log("");
         log(chalk.bgWhite.yellow("Examples:"));
         log("");
-        log(chalk.blue(' $ word --list'));
-        log(chalk.blue(' $ word --add test 测试'));
-        log(chalk.blue(' $ word --whole'));
-        log(chalk.blue(' $ word --delete'));
-        log(chalk.blue(' $ word --change test'));
+        log(chalk.blue(' wsp word --list'));
+        log(chalk.blue(' wsp word --review'));
+        log(chalk.blue(' wsp word --add test 测试'));
+        log(chalk.blue(' wsp word --whole'));
+        log(chalk.blue(' wsp word --delete'));
+        log(chalk.blue(' wsp word --change test'));
     });
 
 
@@ -101,15 +103,15 @@ program.command('todo')
         }
         if(cmd.delete){
             todo.todoList.deleteItem();
-            // todo.todoList.editItem();
         }
     })
     .on('--help', function () {
         console.log("");
         console.log("Examples:");
         console.log("");
-        console.log(' $ todo --list');
-        console.log(' $ todo --add');
+        console.log(' wsp todo --list');
+        console.log(' wsp todo --add');
+        console.log(' wsp todo --delete');
     });
 
 
@@ -119,6 +121,12 @@ program.command('sftp')
     .alias('s')
     .action(function () {
         sftp.run();
+    })
+    .on('--help', function(){
+        console.log("");
+        console.log("Examples:");
+        console.log("");
+        console.log(' wsp sftp');
     });
 
 
@@ -150,10 +158,10 @@ program.command('generate')
         console.log("");
         console.log("Examples:");
         console.log("");
-        console.log(' $ template --vue test.vue');
-        console.log(' $ template --store test.store');
-        console.log(' $ template --eslint');
-        console.log(' $ template --editconfig');
+        console.log(' wsp template --vue test.vue');
+        console.log(' wsp template --store test.store');
+        console.log(' wsp template --eslint');
+        console.log(' wsp template --editconfig');
     });
 
 
@@ -165,27 +173,6 @@ function make_red(txt) {
     return chalk.red(txt)
 }
 
-
-
-/***********************以下是官方示例********************************/
-
-// //例子
-// program
-//     .command('exec <cmd>')
-//     .alias('ex')
-//     .description('execute the given remote cmd')
-//     .option("-e, --exec_mode <mode>", "Which exec mode to use")
-//     .action(function (cmd, options) {
-//         console.log('exec "%s" using %s mode', cmd, options.exec_mode);
-//     }).on('--help', function () {
-//     console.log('');
-//     console.log('Examples:');
-//     console.log('');
-//     console.log('  $ deploy exec sequential');
-//     console.log('  $ deploy exec async');
-// });
-
-// program.parse(process.argv);
 program.version(package.version).parse(process.argv);
-// program.outputHelp(make_red);
+
 
