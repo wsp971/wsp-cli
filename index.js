@@ -5,6 +5,7 @@ var chalk = require('chalk');
 var log = console.log;
 var todo = require('./functions/todo');
 var wordManager = require('./functions/word');
+var sftp = require('./functions/sftp');
 var {generateFile} = require('./functions/generateFile');
 
 /**
@@ -19,6 +20,7 @@ program.command('word')
     .option('-a --add', 'add a word to you words list')
     .option('-c --change', 'change the state of word which you should recite or not')
     .option('-d --delete', 'delete a word from your word list')
+    .option('-r --review', 'review your word list')
     .action(function (word, interpretation, cmd) {
         if (word.whole) {
             wordManager.words.showAllwords();
@@ -26,6 +28,10 @@ program.command('word')
         }
         if (word.list) {
             wordManager.words.showTheNotKnowWord();
+            return;
+        }
+        if(word.review){
+            wordManager.review();
             return;
         }
         if (word.add || (interpretation && interpretation.add) || (cmd && cmd.add)) {
@@ -107,13 +113,13 @@ program.command('todo')
     });
 
 
-// program.command('upload')
-//     .description('上传文档到服务器')
-//     .usage('upload <file> [option]')
-//     .alias('u')
-//     .action(function () {
-//         console.log('hello this is the upload subcommand');
-//     });
+program.command('sftp')
+    .description('上传文档到服务器')
+    .usage('sftp <file> [option]')
+    .alias('s')
+    .action(function () {
+        sftp.run();
+    });
 
 
 /** 生成模板文件*/

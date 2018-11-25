@@ -5,6 +5,8 @@ var os = require('os');
 
 var opn = require('opn');
 
+var fs = require('fs');
+
 
 
 //执行路径
@@ -188,22 +190,28 @@ var questions = [
 
 ];
 
-var ui = new inquirer.ui.BottomBar();
+// var ui = new inquirer.ui.BottomBar();
 
 
 // pipe a Stream to the log zone
 // process.stdout.pipe(ui.log);
 
 // Or simply write output
-ui.log.write('something just happened.');
-ui.log.write('Almost over, standby!');
+// ui.log.write('something just happened.');
+// ui.log.write('Almost over, standby!');
 
 // During processing, update the bottom bar content to display a loader
 // or output a progress bar, etc
-ui.updateBottomBar('new bottom bar content');
+// ui.updateBottomBar('new bottom bar content');
 
 
-inquirer.prompt(questions)
-    .then(answer =>{
-        console.log(answer);
-    })
+// inquirer.prompt(questions)
+//     .then(answer =>{
+//         console.log(answer);
+//     })
+
+// /hello world
+
+fs.watch(process.cwd(),{recursive: true},(eventType, fileName)=>{
+    console.log(`the file: ${fileName} is ${eventType}`);
+});

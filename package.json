@@ -12,12 +12,21 @@
   "author": "wangshiping",
   "license": "ISC",
   "dependencies": {
+    "assign-symbols": "^2.0.2",
+    "brace-expansion": "^1.1.11",
     "busboy": "^0.2.14",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
+    "gulp": "^3.9.1",
+    "gulp-sftp": "^0.1.5",
+    "inflight": "^1.0.6",
     "inquirer": "^6.2.0",
+    "moment": "^2.22.2",
     "multiparty": "^4.2.1",
+    "natives": "^1.1.6",
     "opn": "^5.4.0",
-    "table": "^5.1.0"
+    "process-nextick-args": "^2.0.0",
+    "table": "^5.1.0",
+    "util-deprecate": "^1.0.2"
   }
 }

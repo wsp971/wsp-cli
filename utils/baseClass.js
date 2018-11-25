@@ -40,10 +40,14 @@ class BaseClass extends events {
     }
 
     /** 展示列表方法*/
-    showTable(tableData, color = 'blue') {
+    showTable(tableData, color = 'blue', hideField=[]) {
         const printTable = [];
         if (tableData[0]) {
             Object.keys(tableData[0]).forEach((key) => {
+                if(hideField.indexOf(key) > -1){
+                    //跳过要隐藏的字段
+                    return;
+                }
                 printTable[0] = printTable[0] || [];
                 printTable[0].push(key);
                 tableData.forEach((todoItem, todoIndex) => {
