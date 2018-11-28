@@ -1,6 +1,6 @@
 {
   "name": "wsp-cli",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "description": "cli test",
   "main": "index.js",
   "bin": {
@@ -28,5 +28,8 @@
     "process-nextick-args": "^2.0.0",
     "table": "^5.1.0",
     "util-deprecate": "^1.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^4.26.1"
   }
 }

@@ -8,7 +8,7 @@ const workSpace = path.join(parentPath, 'wsp-cli');
 const filePath = path.resolve(workSpace, 'words.json');
 const chalk = require('chalk');
 const log = console.log;
-const moment = require('moment')
+const moment = require('moment');
 
 class WordItem {
     constructor(option) {
@@ -81,7 +81,7 @@ class WordsManager extends util.baseClass {
 
     save() {
         this.wordList.forEach( item =>{
-            if(item.important < -10){
+            if(item.important <= -10){
                 item.isKnow = true;
             }else{
                 item.isKnow = false;
@@ -95,6 +95,11 @@ class WordsManager extends util.baseClass {
             const theWord = this.wordList.find(item => item.word == word);
             if (theWord) {
                 theWord.isKnow = !theWord.isKnow;
+                if(theWord.isKnow){
+                    theWord.important = -10;
+                }else{
+                    theWord.important = 0;
+                }
                 this.save();
             } else {
                 console.log(chalk.red(`${word} is not find in the word list`));
@@ -103,16 +108,31 @@ class WordsManager extends util.baseClass {
     }
 
     showAllwords() {
-        log(chalk.red("the all words are:"))
         this.ready(() => {
+            this.wordList.sort((a,b)=> {
+                if(a.word < b.word){
+                    return -1;
+                }else if(a.word > b.word){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            });
+            log(chalk.red(`总共有${this.wordList.length}个单词:`));
             this.showTable(this.wordList,'blue',['updateTime']);
         })
     }
 
-    showTheNotKnowWord() {
-        log(chalk.green('you shoule review these words:'));
-        this.ready(() => {
+    queryword(string) {
 
+       const result =  this.wordList.filter(word => word.word.indexOf(string) > -1 || word.interpretation.indexOf(string) > -1)
+           .map(item=>{return {word: item.word,interpretation: item.interpretation}});
+
+       this.showTable(result, 'blue', 'updateTime');
+    }
+
+    showTheNotKnowWord() {
+        this.ready(() => {
             //排序优先顺序  重要性 > 更新日期 > 字母顺序
             const wordList = this.wordList.filter(item => !item.isKnow).sort((a, b) => {
                 if (b.important - a.important < 0) {
@@ -139,8 +159,29 @@ class WordsManager extends util.baseClass {
                     return 0;
                 }
             });
+            log(chalk.green(`还有${wordList.length}个单词待记忆：`));
             this.showTable(wordList, 'red', 'updateTime');
         })
+    }
+
+    queryFinished(){
+
+        const finishedWord = this.wordList.filter(word => word.isKnow).map(word =>{
+            return {
+                word: word.word,
+                interpretation: word.interpretation
+            }
+        }).sort((a,b)=>{
+            if(a.word < b.word){
+                return -1;
+            }else if(a.word > b.word){
+                return 1;
+            }else{
+                return 0;
+            }
+        });
+        log(chalk(`恭喜主人，已经记住了${finishedWord.length}个单词！`));
+        this.showTable(finishedWord, 'blue');
     }
 }
 
@@ -211,10 +252,43 @@ function review() {
     });
 }
 
+
+
+/**
+ * 查询单词
+ * */
+
+function queryWord(){
+    words.ready(()=>{
+        inquirer.prompt([{
+            type:'input',
+            name:'querystring',
+            message:'请输入你要查询的单词：',
+            validate(input){
+                return /\S+/.test(input)
+            }
+        }]).then(answer =>{
+            words.queryword(answer.querystring);
+        });
+    })
+}
+
+/**
+ * 查询已会的单词
+ * */
+
+function queryFinished(){
+    words.ready(()=>{
+        words.queryFinished();
+    })
+}
+
 module.exports = {
     words,
     add,
-    review
+    review,
+    queryWord,
+    queryFinished
 };
 
 

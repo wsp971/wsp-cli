@@ -20,6 +20,8 @@ program.command('word')
     .option('-a --add', 'add a word to you words list')
     .option('-c --change', 'change the state of word which you should recite or not')
     .option('-d --delete', 'delete a word from your word list')
+    .option('-q --query', 'query words!')
+    .option('-f --finished', 'look the completed word')
     .option('-r --review', 'review your word list')
     .action(function (word, interpretation, cmd) {
         if (word.whole) {
@@ -32,6 +34,15 @@ program.command('word')
         }
         if(word.review){
             wordManager.review();
+            return;
+        }
+        if(word.query){
+            wordManager.queryWord();
+            return;
+
+        }
+        if(word.finished){
+            wordManager.queryFinished();
             return;
         }
         if (word.add || (interpretation && interpretation.add) || (cmd && cmd.add)) {
