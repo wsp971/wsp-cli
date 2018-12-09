@@ -12,9 +12,7 @@ module.exports = {
         'es6': true,
     },
     'globals': {
-        'JD': false,
         'Vue': false,
-        'wa':false
     },
     'plugins': ['html'],
     'rules': {
@@ -48,14 +46,8 @@ module.exports = {
         'callback-return': 'warn',
         //强制类方法使用 this
         'class-methods-use-this': 'warn',
-
-        /********区别于小程序 start **********/
-        // 禁止直接使用原生Promise，必须引入lib
-        // 'no-restricted-globals': ['error', 'Promise'],
-        // 要求使用 let 或 const 而不是 var
         'no-var':'off',
         //禁用 console
         'no-console':'off'
-        /********区别于小程序 end ***********/
     }
-}
+};
