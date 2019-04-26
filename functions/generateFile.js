@@ -17,10 +17,10 @@ function generateFile(type, fileName) {
         writeFileName = fileName ? path.resolve(cwd, fileName) : path.resolve(cwd, 'store.js');
     } else if (type == 'eslint') {
         readFileName = path.resolve(__dirname, '../templates/eslint.js');
-        writeFileName = path.resolve(cwd, './.eslint.js');
+        writeFileName = path.resolve(cwd, './.eslintrc.js');
     }else if (type == 'editconfig'){
         readFileName = path.resolve(__dirname, '../templates/editConfig.txt');
-        writeFileName = path.resolve(cwd, './.editconfig');
+        writeFileName = path.resolve(cwd, './.editorconfig');
     }
 
     util.file.readFile(readFileName).then(data => {
